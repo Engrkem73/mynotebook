@@ -19,3 +19,12 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.header {
+  @apply flex items-center justify-center p-4;
+  background-color: var(--background);
+}
+.header h1 {
+  @apply text-2xl font-bold self-center;
+  color: var(--foreground);
+}
