@@ -1,6 +1,8 @@
 import SignOut from 'app/components/sign-out';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import EditButton from './components/edit';
+import DeleteButton from './components/delete';
 
 export default async function Home() {
     const session = await auth().catch((error) => {
@@ -23,8 +25,25 @@ return (
         <h1 className='text-2xl font-bold mb-4'>Your Notebooks:</h1>
       </div>
       <ul>
-        <li>Notebook 1</li>
-        <li>Notebook 2</li>
+        <li>
+          <div className='pages-list'>
+            Notebook 1
+            <div className='edit-delete'>
+                <EditButton />
+                <DeleteButton />
+            </div>
+          </div>
+        </li>
+        <li>
+          <div className='pages-list'>
+            Notebook 1
+            <div className='edit-delete'>
+                <EditButton />
+                <DeleteButton />
+            </div>
+          </div>
+        </li>
+       
       </ul>
    
       <br />

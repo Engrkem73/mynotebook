@@ -39,7 +39,7 @@ body {
 }
 
 .welcome-container {
-  @apply flex justify-between items-center w-full bg-gray-800 pt-10 h-[100px] sticky top-0 z-50;
+  @apply flex justify-between items-center w-full bg-gray-800 pt-0 h-[100px] sticky top-0 z-50;
 }
 
 .welcome-container h1 {
@@ -56,4 +56,39 @@ body {
 
 .welcome-content h1 {
   @apply text-2xl font-bold;
+}
+
+@media screen and (max-width: 768px) {
+  .welcome-container {
+    @apply flex flex-col items-center justify-center;
+  }
+  .welcome-left-padding {
+    display: none;
+  }
+  .welcome-content {
+    @apply flex flex-row items-center justify-between w-full h-[100px] bg-gray-800 pr-10 mt-0 pt-0;
+  }
+}
+
+ul{
+  @apply flex flex-col items-center justify-center w-full pt-10;
+}
+li{
+  @apply flex flex-row items-center justify-center w-full pt-10;
+}
+
+.pages-list{
+  @apply flex flex-row items-center justify-between w-[600px] h-[50px] bg-gray-800 pr-10 mt-0 pt-0 pl-5 pr-5 rounded-lg;
+}
+
+.edit-delete{
+  @apply flex flex-row items-center justify-end w-[200px] h-[50px] rounded-lg gap-6;
+}
+
+.delete-button{
+  @apply hover:scale-110;
+}
+
+.edit-button{
+  @apply hover:scale-110;
 }
