@@ -1,4 +1,3 @@
-
 import { auth } from '@/auth'
 import SignIn from 'app/components/sign-in';
 import {redirect} from 'next/navigation';
@@ -6,7 +5,7 @@ import {redirect} from 'next/navigation';
 
 
 export default async function Home() {
-  const session = await auth().catch((error) => {
+  const session = await auth().catch((error: Error) => {
     console.error('Error fetching session:', error);
     return null;
   });

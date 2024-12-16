@@ -5,7 +5,7 @@ import EditButton from './components/edit';
 import DeleteButton from './components/delete';
 
 export default async function Home() {
-    const session = await auth().catch((error) => {
+    const session = await auth().catch((error: Error) => {
         console.error('Error fetching session:', error);
         return null;
       });
