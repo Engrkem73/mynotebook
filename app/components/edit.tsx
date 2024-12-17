@@ -1,10 +1,15 @@
 import { PencilOff } from 'lucide-react';
+import Link from 'next/link';
 
-function EditButton() {
+interface EditButtonProps {
+  notebookId: string;
+}
+
+function EditButton({ notebookId }: EditButtonProps) {
   return (
-    <button>
+    <Link href={`/notebooks/${notebookId}/edit`} className="edit-link">
       <PencilOff className='edit-button' />
-    </button>
+    </Link>
   );
 }
 

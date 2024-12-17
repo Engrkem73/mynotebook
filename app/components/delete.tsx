@@ -1,8 +1,32 @@
+import React from 'react';
 import { Delete } from 'lucide-react';
 
-function DeleteButton() {
+interface DeleteButtonProps {
+  notebookId: string;
+  onDelete: () => void;
+}
+
+const DeleteButton: React.FC<DeleteButtonProps> = ({ notebookId, onDelete }) => {
+  const handleDelete = async () => {
+    const response = await fetch(`/api/notebooks/${notebookId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      onDelete(); // Call the onDelete prop to refresh the state or perform further actions
+    } else {
+      const errorData = await response.json();
+      console.error('Error deleting notebook:', errorData);
+    }
+  };
+
   return (
-    <Delete className="delete-button" />
+    <button onClick={handleDelete}>
+      <Delete className="delete-button" />
+    </button>
   );
 };
 

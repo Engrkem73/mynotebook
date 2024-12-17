@@ -58,18 +58,6 @@ body {
   @apply text-2xl font-bold;
 }
 
-@media screen and (max-width: 768px) {
-  .welcome-container {
-    @apply flex flex-col items-center justify-center;
-  }
-  .welcome-left-padding {
-    display: none;
-  }
-  .welcome-content {
-    @apply flex flex-row items-center justify-between w-full h-[100px] bg-gray-800 pr-10 mt-0 pt-0;
-  }
-}
-
 ul{
   @apply flex flex-col items-center justify-center w-full pt-10;
 }
@@ -86,9 +74,94 @@ li{
 }
 
 .delete-button{
-  @apply hover:scale-110;
+  @apply hover:scale-110 text-black;
 }
 
 .edit-button{
-  @apply hover:scale-110;
+  @apply hover:scale-110 text-black;
+}
+
+.create-notebook {
+  @apply flex flex-col items-center h-screen w-[80vw] bg-gray-800 pl-4 gap-4;
+}
+
+
+
+.notebook-form{
+  @apply flex flex-col w-full h-full pt-10 gap-4;
+}
+
+.label{
+  @apply flex flex-row gap-10 items-center;
+}
+
+.title-input{
+  @apply w-[80%] text-black text-2xl h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+}
+
+.button-container{
+  @apply flex flex-row gap-10 items-center;
+}
+
+.right-padding{
+  @apply w-[100px];
+}
+
+.left-padding{
+  @apply flex flex-row items-center justify-end w-[80%] h-10;
+}
+
+.button-container{
+  @apply flex flex-row gap-4;
+}
+
+.create-button{
+  @apply w-[100px] self-end bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+}
+
+.content-input{
+  @apply w-[80%] h-[80vh] text-black  text-2xl rounded-lg mt-0 pt-0 pl-5 pr-5 overflow-y-auto;
+}
+
+.cancel-button{
+  @apply w-[100px] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+}
+
+@media (max-width: 640px) {
+  .welcome-container {
+    @apply flex flex-col items-center justify-center;
+  }
+  .welcome-left-padding {
+    display: none;
+  }
+  .welcome-content {
+    @apply flex flex-row items-center justify-between w-full h-[100px] bg-gray-800 pr-10 mt-0 pt-0;
+  }
+  .create-notebook {
+    @apply flex flex-col items-center h-screen w-[100vw] bg-gray-800 p-4 gap-4;
+  }
+  .notebook-form {
+    @apply flex flex-col w-[100%] h-full pt-10 gap-4;
+  }
+  .label {
+    @apply flex flex-col gap-2 items-start;
+  }
+  .title-input, .content-input {
+    @apply w-[100%] text-black text-2xl;
+  }
+  .button-container {
+    @apply flex flex-row gap-2 items-center;
+  }
+  .right-padding {
+    display: none;
+  }
+  .left-padding {
+    @apply flex flex-row items-center justify-end w-full h-10;
+  }
+  .create-button {
+    @apply w-[100%] self-end bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  }
+  .cancel-button {
+    @apply w-[100%] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  }
 }
