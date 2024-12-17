@@ -2,12 +2,18 @@ import { auth } from "@/auth";
 import { prisma } from "@/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
 export async function GET(
-  request: NextRequest,
-  context: { params: { id: string } }
+  _request: NextRequest,
+  { params }: RouteContext
 ) {
   const notebook = await prisma.notebook.findUnique({
-    where: { id: context.params.id },
+    where: { id: params.id },
   });
 
   if (!notebook) {
@@ -19,7 +25,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: RouteContext
 ) {
   const session = await auth();
 
@@ -30,7 +36,7 @@ export async function PUT(
   const { title, content } = await request.json();
 
   const notebook = await prisma.notebook.update({
-    where: { id: context.params.id },
+    where: { id: params.id },
     data: {
       title,
       content,
@@ -41,8 +47,8 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } }
+  _request: NextRequest,
+  { params }: RouteContext
 ) {
   const session = await auth();
 
@@ -51,7 +57,7 @@ export async function DELETE(
   }
 
   await prisma.notebook.delete({
-    where: { id: context.params.id },
+    where: { id: params.id },
   });
 
   return new NextResponse(null, { status: 204 });
