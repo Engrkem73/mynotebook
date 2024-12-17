@@ -2,9 +2,12 @@ import { auth } from "@/auth";
 import { prisma } from "@/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   const notebook = await prisma.notebook.findUnique({
-    where: { id: params.id },
+    where: { id: context.params.id },
   });
 
   if (!notebook) {
@@ -14,17 +17,20 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   return NextResponse.json(notebook);
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   const session = await auth();
 
   if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const { title, content } = await req.json();
+  const { title, content } = await request.json();
 
   const notebook = await prisma.notebook.update({
-    where: { id: params.id },
+    where: { id: context.params.id },
     data: {
       title,
       content,
@@ -34,7 +40,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   return NextResponse.json(notebook);
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   const session = await auth();
 
   if (!session) {
@@ -42,7 +51,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   }
 
   await prisma.notebook.delete({
-    where: { id: params.id },
+    where: { id: context.params.id },
   });
 
   return new NextResponse(null, { status: 204 });
