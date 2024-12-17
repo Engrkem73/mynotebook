@@ -2,11 +2,6 @@ import { auth } from "@/auth";
 import { prisma } from "@/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-interface Notebook {
-  title: string;
-  content: string;
-}
-
 export async function POST(req: NextRequest) {
   const session = await auth();
 
@@ -27,26 +22,26 @@ export async function POST(req: NextRequest) {
   return NextResponse.json(notebook, { status: 201 });
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   return NextResponse.json(null, { status: 405 });
 }
 
-export async function HEAD(req: NextRequest) {
+export async function HEAD() {
   return NextResponse.json(null, { status: 405 });
 }
 
-export async function PUT(req: NextRequest) {
+export async function PUT() {
   return NextResponse.json(null, { status: 405 });
 }
 
-export async function DELETE(req: NextRequest) {
+export async function DELETE() {
   return NextResponse.json(null, { status: 405 });
 }
 
-export async function OPTIONS(req: NextRequest) {
+export async function OPTIONS() {
   return NextResponse.json(null, { status: 405 });
 }
 
-export async function PATCH(req: NextRequest) {
+export async function PATCH() {
   return NextResponse.json(null, { status: 405 });
 }
