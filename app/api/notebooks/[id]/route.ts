@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest, { params }) {
+export async function GET({ params }: { params: { id: string } }) {
   const notebook = await prisma.notebook.findUnique({
     where: { id: params.id },
   });
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest, { params }) {
   return NextResponse.json(notebook);
 }
 
-export async function PUT(request: NextRequest, { params }) {
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const session = await auth();
 
   if (!session) {
@@ -31,7 +31,7 @@ export async function PUT(request: NextRequest, { params }) {
   return NextResponse.json(notebook);
 }
 
-export async function DELETE(request: NextRequest, { params }) {
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   const session = await auth();
 
   if (!session) {
