@@ -5,21 +5,20 @@ import { Notebook } from '@prisma/client';
 import Link from 'next/link';
 import { PageProps } from '../../../types';
 
-export default async function NotebookView({ params }: PageProps) {
-  const { id } = await params;
-
+export default function NotebookView({ params }: PageProps) {
   const [notebook, setNotebook] = useState<Notebook | null>(null);
 
   useEffect(() => {
     async function fetchNotebook() {
-      const response = await fetch(`/api/notebooks/${id}`);
+      const resolvedParams = await params;
+      const response = await fetch(`/api/notebooks/${resolvedParams.id}`);
       if (response.ok) {
         const data = await response.json();
         setNotebook(data);
       }
     }
     fetchNotebook();
-  }, [id]);
+  }, [params]);
 
   if (!notebook) {
     return <div>Loading...</div>;
@@ -39,7 +38,7 @@ export default async function NotebookView({ params }: PageProps) {
               <Link href="/"><button className="cancel-button">
                 Back
               </button></Link>
-              <Link href={`/notebooks/${id}/edit`}><button className="create-button">
+              <Link href={`/notebooks/${notebook.id}/edit`}><button className="create-button">
                 Edit
               </button></Link>
             </div>
