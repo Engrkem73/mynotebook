@@ -1,11 +1,12 @@
 "use client";
 import { useState, FormEvent } from "react";
 import Link from "next/link";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function NewNotebook() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
