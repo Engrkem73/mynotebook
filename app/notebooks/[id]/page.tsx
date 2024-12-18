@@ -1,11 +1,14 @@
 import { Suspense } from 'react';
 import NotebookView from './notebook-view';
+import { PageProps } from '../../../types';
 
-export default function NotebookPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+/**
+ * Notebook page component
+ */
+export default function NotebookPage({ params }: PageProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <NotebookView id={id} />
+      <NotebookView params={params} />
     </Suspense>
   );
 }

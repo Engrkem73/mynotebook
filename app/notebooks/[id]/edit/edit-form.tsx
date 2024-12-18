@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'; // Correct to use in Next.js 13 app dir
 import { Notebook } from '@prisma/client';
 import Link from 'next/link';
 
-export default function EditNotebookForm({ id }: { id: string }) {
+type EditNotebookFormProps = {
+  id: string;
+};
+
+export default function EditNotebookForm({ id }: EditNotebookFormProps) {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -34,7 +38,7 @@ export default function EditNotebookForm({ id }: { id: string }) {
     });
 
     if (response.ok) {
-      router.push('/');
+      router.push('/'); // Redirect to homepage or notebook list
     } else {
       alert('Failed to update notebook');
     }

@@ -3,8 +3,11 @@
 import { useEffect, useState } from 'react';
 import { Notebook } from '@prisma/client';
 import Link from 'next/link';
+import { PageProps } from '../../../types';
 
-export default function NotebookView({ id }: { id: string }) {
+export default async function NotebookView({ params }: PageProps) {
+  const { id } = await params;
+
   const [notebook, setNotebook] = useState<Notebook | null>(null);
 
   useEffect(() => {

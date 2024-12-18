@@ -1,46 +1,59 @@
 import { auth } from "@/auth";
 import { prisma } from "@/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
+import { ApiRouteContext } from '../../../../types';
 
-export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  context: ApiRouteContext
+): Promise<Response> {
+  const { id } = await context.params;
   const notebook = await prisma.notebook.findUnique({
-    where: { id: params.id },
+    where: { id },
   });
 
   if (!notebook) {
-    return NextResponse.json({ message: "Notebook not found" }, { status: 404 });
+    return Response.json({ message: "Notebook not found" }, { status: 404 });
   }
 
-  return NextResponse.json(notebook);
+  return Response.json(notebook);
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  context: ApiRouteContext
+): Promise<Response> {
   const session = await auth();
 
   if (!session) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await context.params;
   const { title, content } = await request.json();
 
   const notebook = await prisma.notebook.update({
-    where: { id: params.id },
+    where: { id },
     data: { title, content },
   });
 
-  return NextResponse.json(notebook);
+  return Response.json(notebook);
 }
 
-export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  request: NextRequest,
+  context: ApiRouteContext
+): Promise<Response> {
   const session = await auth();
 
   if (!session) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await context.params;
   await prisma.notebook.delete({
-    where: { id: params.id },
+    where: { id },
   });
 
-  return new NextResponse(null, { status: 204 });
+  return new Response(null, { status: 204 });
 }

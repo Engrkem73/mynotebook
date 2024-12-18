@@ -1,6 +1,7 @@
 "use client";
 import { useState, FormEvent } from "react";
 import Link from "next/link";
+import router from "next/router";
 
 export default function NewNotebook() {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ export default function NewNotebook() {
     });
 
     if (response.ok) {
-      window.location.href = "/";
+      router.push("/");
     } else {
       alert("Failed to create notebook");
     }
