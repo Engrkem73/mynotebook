@@ -13,11 +13,12 @@ export async function POST(
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await context.params;
+  const params = await context.params;
 
-  if (!id) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  if (!params || typeof params.id !== 'string') {
+    return NextResponse.json({ message: "Invalid or missing 'id' parameter" }, { status: 400 });
   }
+
 
   const { title, content } = await request.json();
 
@@ -58,11 +59,13 @@ export async function DELETE(
   context: ApiRouteContext
 ): Promise<NextResponse> {
   const session = await auth();
-  const { id } = await context.params;
+  const params = await context.params;
 
-  if (!id) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  if (!params || typeof params.id !== 'string') {
+    return NextResponse.json({ message: "Invalid or missing 'id' parameter" }, { status: 400 });
   }
+
+  const { id } = params;
 
   if (!session) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
