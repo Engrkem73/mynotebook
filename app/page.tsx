@@ -20,7 +20,7 @@ export default async function Home() {
     return (
         <> 
           <Head>
-            <link rel="icon" href="/favicon.jpeg" type="image/jpeg" />
+            <link rel="icon" href="/favicon.ico" type="image/jpeg" />
           </Head>
           <div className='notebook-container'>
             <div className='welcome-container'>
