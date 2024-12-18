@@ -13,13 +13,6 @@ export async function POST(
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const params = await context.params;
-
-  if (!params || typeof params.id !== 'string') {
-    return NextResponse.json({ message: "Invalid or missing 'id' parameter" }, { status: 400 });
-  }
-
-
   const { title, content } = await request.json();
 
   const notebook = await prisma.notebook.create({
