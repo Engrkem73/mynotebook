@@ -25,6 +25,7 @@ export default function NotebookView({ params }: PageProps) {
   }
 
   return (
+    <main>
     <div className="create-notebook">
       <div className="notebook-form">
         <div className="label">
@@ -50,5 +51,6 @@ export default function NotebookView({ params }: PageProps) {
         </div>
       </div>
     </div>
+    </main>
   );
 }

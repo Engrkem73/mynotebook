@@ -18,7 +18,7 @@ export default function NotebooksList({ notebooks: initialNotebooks }: Notebooks
     );
   };
   return (
-    <>
+    <div className='notebook-list-container'>
       {notebooks.length === 0 ? (
         <p>You have no notebooks. Create one below!</p>
       ) : (
@@ -42,6 +42,6 @@ export default function NotebooksList({ notebooks: initialNotebooks }: Notebooks
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
