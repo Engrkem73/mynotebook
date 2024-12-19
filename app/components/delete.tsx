@@ -1,5 +1,4 @@
 import React from 'react';
-import { Delete } from 'lucide-react';
 
 interface DeleteButtonProps {
   notebookId: string;
@@ -24,8 +23,8 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ notebookId, onDelete }) => 
   };
 
   return (
-    <button onClick={handleDelete}>
-      <Delete className="delete-button" />
+    <button onClick={handleDelete} className='continue-button'>
+      Delete
     </button>
   );
 };

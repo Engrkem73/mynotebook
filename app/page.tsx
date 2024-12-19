@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { prisma } from "@/prisma";
 import NotebooksList from './components/notebooks-list';
 import Head from 'next/head';
+import Footer from './components/footer';
 
 export default async function Home() {
     const session = await auth();

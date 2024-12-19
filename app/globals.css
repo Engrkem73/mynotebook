@@ -127,6 +127,30 @@ li{
   @apply w-[100px] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
 }
 
+.notebook-list{
+  @apply flex justify-between items-center w-[600px];
+}
+
+.confirm-content{
+  @apply flex flex-col items-center justify-center w-[400px] h-[200px] bg-gray-800 p-4 gap-4 z-50 rounded-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.confirm-content h2{
+  @apply font-bold bg-black p-4 rounded-lg;
+}
+
+.hide-confirm{
+  display: none;
+}
+
+.close-button{
+  @apply w-[100px] self-center bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 text-center;
+}
+
+.continue-button{
+  @apply w-[100px] self-center items-center bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 text-center;
+}
+
 @media (max-width: 640px) {
   .welcome-container {
     @apply flex flex-col items-center justify-center;
@@ -163,5 +187,8 @@ li{
   }
   .cancel-button {
     @apply w-[100%] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  }
+  .notebook-list {
+    @apply flex justify-between items-center w-[400px];
   }
 }

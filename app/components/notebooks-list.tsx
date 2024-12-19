@@ -1,15 +1,22 @@
 "use client";
 
 import EditButton from './edit';
-import DeleteButton from './delete';
 import Link from 'next/link';
 import { Notebook } from '@prisma/client';
+import DeleteIcon from './delete-icon';
+import { useState } from 'react';
 
 interface NotebooksListProps {
   notebooks: Notebook[];
 }
 
-export default function NotebooksList({ notebooks }: NotebooksListProps) {
+export default function NotebooksList({ notebooks: initialNotebooks }: NotebooksListProps) {
+  const [notebooks, setNotebooks] = useState<Notebook[]>(initialNotebooks);
+  const handleDelete = (notebookId: string) => {
+    setNotebooks((prevNotebooks) => 
+      prevNotebooks.filter((notebook) => notebook.id !== notebookId)
+    );
+  };
   return (
     <>
       {notebooks.length === 0 ? (
@@ -18,16 +25,15 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
         <ul>
       
           {notebooks.map((notebook) => (
-            <li key={notebook.id} className='flex justify-between items-center w-[600px]'>
+            <li key={notebook.id} className='notebook-list'>
               <div className='flex flex-row items-center justify-between bg-gray-200 p-4 h-10 w-[500px] rounded-md'>
                 <Link href={`/notebooks/${notebook.id}`} className='text-blue-600'>{notebook.title}</Link>
                 <div className='edit-delete ml-auto'>
                   <EditButton notebookId={notebook.id} />
-                  <DeleteButton 
+                  <DeleteIcon
                     notebookId={notebook.id} 
                     onDelete={() => {
-                      // Refresh the page to show updated list
-                      window.location.reload();
+                      handleDelete(notebook.id);
                     }} 
                   />
                 </div>

@@ -4,6 +4,7 @@ import { useEffect, useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation'; // Correct to use in Next.js 13 app dir
 import { Notebook } from '@prisma/client';
 import Link from 'next/link';
+import Cancel from '@/app/components/cancel';
 
 type EditNotebookFormProps = {
   id: string;
@@ -26,8 +27,8 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
     fetchNotebook();
   }, [id]);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleSubmit(event: any) {
+    event.preventDefault();
 
     const response = await fetch(`/api/notebooks/${id}`, {
       method: 'PUT',
@@ -46,7 +47,7 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
 
   return (
     <div className="create-notebook">
-      <form onSubmit={handleSubmit} className="notebook-form">
+      <form className="notebook-form">
         <label className="label">
           <span className="text-2xl font-bold w-[100px]">Title:</span>
           <input
@@ -61,10 +62,8 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
           <div className="right-padding"></div>
           <div className="left-padding">
             <div className="button-container">
-              <Link href={`/notebooks/${id}`}><button type="button" className="cancel-button">
-                Cancel
-              </button></Link>
-              <button type="submit" className="create-button">
+              <Cancel />
+              <button type="button" onClick={handleSubmit} className="create-button">
                 Update
               </button>
             </div>

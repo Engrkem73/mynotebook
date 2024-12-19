@@ -1,7 +1,7 @@
 "use client";
 import { useState, FormEvent } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Cancel from "@/app/components/cancel";
 
 export default function NewNotebook() {
   const [title, setTitle] = useState("");
@@ -24,6 +24,7 @@ export default function NewNotebook() {
     }
   }
 
+
   return (
     <div className="create-notebook">
       <form onSubmit={handleSubmit} className="notebook-form">
@@ -41,9 +42,7 @@ export default function NewNotebook() {
           <div className="right-padding"></div>
           <div className="left-padding">
             <div className="button-container">
-            <Link href="/"><button type="reset" className="cancel-button">
-              Cancel
-            </button></Link>
+            <Cancel/>
             <button type="submit" className="create-button">
               Create
             </button>
