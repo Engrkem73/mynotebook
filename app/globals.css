@@ -151,6 +151,10 @@ li{
   @apply w-[100px] self-center items-center bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 text-center;
 }
 
+.children{
+  height:calc(100vh - 100px);
+  width: 100vw;
+}
 @media (max-width: 640px) {
   .welcome-container {
     @apply flex flex-col items-center justify-center;

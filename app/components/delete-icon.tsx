@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Delete } from "lucide-react";
 import DeleteButton from './delete';
-import { on } from "events";
 
 function DeleteIcon({onDelete, notebookId}: any) {
     const [askConfirm, setAskConfirm] = useState(false);
