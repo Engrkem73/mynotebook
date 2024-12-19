@@ -21,7 +21,7 @@ export default function NotebookView({ params }: PageProps) {
   }, [params]);
 
   if (!notebook) {
-    return <div>Loading...</div>;
+    return <div className='flex flex-col items-center justify-center bg-gray-800 w-[600px] h-[400px] pt-10 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg gap-4'>Loading...</div>;
   }
 
   return (
