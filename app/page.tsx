@@ -32,7 +32,7 @@ export default async function Home() {
               </div>
             </div>
             <div className='main-content'>
-            <div className='flex flex-row items-center justify-center items-center w-full pt-10'>
+            <div className='flex flex-row items-center justify-center w-full pt-10'>
               <h1 className='text-2xl font-bold mb-4'>Your Notebooks:</h1>
             </div>
             <div className="flex flex-col items-center justify-center">

@@ -3,21 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f9fa;
+  --secondary-bg: #ffffff;
+  --accent: #3b82f6;
+  --foreground: #2d3748;
+  --muted: #718096;
+  --border: #e2e8f0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1b1e;
+    --secondary-bg: #2d2d2d;
+    --accent: #60a5fa;
+    --foreground: #e2e8f0;
+    --muted: #a0aec0;
+    --border: #4a5568;
   }
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -30,20 +32,26 @@ body {
 }
 
 .header {
-  @apply flex items-center justify-center p-4 bg-gray-900 w-full h-[100px] sticky top-0 z-50;
+  background: linear-gradient(to right, #2d3748, #4a5568);
+  @apply flex items-center justify-center p-4 w-full h-[100px] sticky top-0 z-50;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 .header h1 {
   @apply text-2xl font-bold self-center;
-  color: var(--foreground);
+  color: var(--secondary-bg);
 }
 
 .notebook-container {
-  @apply flex-1 flex flex-col items-center w-full min-w-[100%];
-  min-height: calc(100vh - 200px); /* Accounting for header and footer */
+  @apply flex flex-col items-center w-full min-w-[100%];
+  min-height: calc(100vh - 200px);
+  background: var(--secondary-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .welcome-container {
-  @apply flex justify-between items-center w-full bg-gray-800 pt-0 h-[100px] sticky top-0 z-50;
+  background: linear-gradient(to right, #2d3748, #4a5568);
+  @apply flex justify-between items-center w-full pt-0 h-[100px] sticky top-0 z-50;
 }
 
 .welcome-container h1 {
@@ -70,7 +78,10 @@ li{
 }
 
 .pages-list{
-  @apply flex flex-row items-center justify-between w-[600px] h-[50px] bg-gray-800 pr-10 mt-0 pt-0 pl-5 pr-5 rounded-lg;
+  background: var(--secondary-bg);
+  @apply flex flex-row items-center justify-between w-[600px] h-[50px] pr-10 mt-0 pt-0 pl-5 pr-5 rounded-lg;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
 }
 
 .edit-delete{
@@ -86,12 +97,21 @@ li{
 }
 
 .create-notebook {
-  @apply flex flex-col items-center justify-center h-screen w-[80vw] bg-gray-800 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg gap-4 pl-10;
+  @apply flex flex-col items-center w-[80vw] rounded-lg gap-4 pl-10;
+  background: var(--secondary-bg);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 100vh;
+  padding: 20px 0;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
 main {
   @apply flex-1 flex flex-col items-center w-full;
 }
+
 .main-content{
   position: relative;
   top: 100px;
@@ -100,25 +120,20 @@ main {
   padding-bottom: 100px;
 }
 
-footer {
-  @apply w-full h-[100px] bg-gray-800;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .notebook-form{
-  @apply flex flex-col w-full h-full justify-center pt-10 gap-4;
+  @apply flex flex-col w-full h-full gap-4;
+  padding-top: 20px;
 }
 
 .label{
   @apply flex flex-row gap-10 items-center;
 }
 
-.title-input{
-  @apply w-[80%] text-black text-2xl h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+.title-input {
+  @apply w-[80%] h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
 }
 
 .button-container{
@@ -137,16 +152,38 @@ footer {
   @apply flex flex-row gap-4;
 }
 
-.create-button{
-  @apply w-[100px] self-end bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+.create-button {
+  @apply w-[100px] self-end h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  background: var(--accent);
+  color: var(--secondary-bg);
+  transition: all 0.2s ease;
 }
 
-.content-input{
-  @apply w-[80%] h-[70vh] text-black  text-2xl rounded-lg mt-0 pt-0 pl-5 pr-5 overflow-y-auto;
+.create-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
-.cancel-button{
-  @apply w-[100px] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+.cancel-button {
+  @apply w-[100px] self-end h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+  background: #ef4444;
+  color: var(--secondary-bg);
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.content-input {
+  @apply w-[80%] rounded-lg pl-5 pr-5 overflow-y-auto;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  height: calc(100vh - 250px);
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .notebook-list{
@@ -181,6 +218,18 @@ footer {
   height:calc(100vh);
   @apply flex flex-col items-center justify-center w-full;
 }
+
+footer {
+  background: linear-gradient(to right, #2d3748, #4a5568);
+  @apply w-full h-[100px];
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-bg);
+}
+
 @media (max-width: 640px) {
   main {
     @apply w-[100vw];
@@ -193,23 +242,21 @@ footer {
     display: none;
   }
   .welcome-content {
-    @apply flex flex-row items-center justify-between w-full h-[100px] bg-gray-800 pr-10 mt-0 pt-0;
+    @apply flex flex-row items-center justify-between w-full h-[100px] pr-10 mt-0 pt-0;
   }
   .create-notebook {
-    @apply flex flex-col items-center h-screen w-[100vw] bg-gray-800 p-4 gap-4;
+    @apply flex flex-col items-center h-screen w-[100vw] p-4 gap-4;
   }
   .notebook-form {
     @apply flex flex-col w-[100%] h-full pt-10 gap-4;
-  }
-  .content-input {
-    @apply w-[90%] h-[50vh] text-lg;
-    margin: 0 auto;
   }
   .label {
     @apply flex flex-col gap-2 items-start;
   }
   .title-input, .content-input {
-    @apply w-[100%] text-black text-2xl;
+    @apply w-[100%] text-2xl;
+    color: var(--foreground);
+    background: var(--background);
   }
   .button-container {
     @apply flex flex-row gap-2 items-center;
@@ -221,10 +268,14 @@ footer {
     @apply flex flex-row items-center justify-end w-full h-10;
   }
   .create-button {
-    @apply w-[100%] self-end bg-blue-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+    @apply w-[100%] self-end h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+    background: var(--accent);
+    color: var(--secondary-bg);
   }
   .cancel-button {
-    @apply w-[100%] self-end bg-red-500 text-white h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+    @apply w-[100%] self-end h-10 rounded-lg mt-0 pt-0 pl-5 pr-5;
+    background: #ef4444;
+    color: var(--secondary-bg);
   }
   .notebook-list {
     @apply flex justify-between items-center w-[400px];
