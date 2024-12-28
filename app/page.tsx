@@ -31,6 +31,7 @@ export default async function Home() {
                 <SignOut/>
               </div>
             </div>
+            <div className='main-content'>
             <div className='flex flex-row items-center justify-center items-center w-full pt-10'>
               <h1 className='text-2xl font-bold mb-4'>Your Notebooks:</h1>
             </div>
@@ -40,6 +41,7 @@ export default async function Home() {
               </Link>
             </div>
             <NotebooksList notebooks={notebooks} />
+          </div>
           </div>
           <Footer />
         </main>
