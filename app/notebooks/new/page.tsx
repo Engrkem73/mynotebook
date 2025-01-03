@@ -3,6 +3,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Cancel from "@/app/components/cancel";
 
+
 export default function NewNotebook() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

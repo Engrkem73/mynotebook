@@ -6,7 +6,7 @@ export default function Footer() {
                 © 2024 MyNotebook. All rights reserved.
             </p>
             <p>
-                Created by <span className="font-bold">Kemuel John Budaca</span>
+                Created by <span className="font-bold">Engrkem73</span>
             </p>
             <p>
                 Email: <span className="font-bold"><a href="mailto:kemueljohn73@gmail.com">kemueljohn73@gmail.com</a></span>
