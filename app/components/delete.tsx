@@ -23,7 +23,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ notebookId, onDelete }) => 
   };
 
   return (
-    <button onClick={handleDelete} className='continue-button'>
+    <button onClick={handleDelete} className='continue-button' aria-label='Delete Button'>
       Delete
     </button>
   );

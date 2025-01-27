@@ -1,7 +1,7 @@
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col items-center justify-center w-full h-[100px] bg-gray-800">
+        <footer className="flex flex-col items-center justify-center w-full h-[100px]">
             <p className="text-sm text-gray-500">
                 © 2024 MyNotebook. All rights reserved.
             </p>

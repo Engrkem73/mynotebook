@@ -18,17 +18,18 @@ export default function NotebooksList({ notebooks: initialNotebooks }: Notebooks
     );
   };
   return (
-    <div className='notebook-list-container'>
+    <div className='flex-col justify-start'>
       {notebooks.length === 0 ? (
         <p>You have no notebooks. Create one below!</p>
       ) : (
-        <ul>
+        <ul className='flex flex-col justify-start items-center gap-5 w-screen'>
       
           {notebooks.map((notebook) => (
-            <li key={notebook.id} className='notebook-list'>
-              <div className='flex flex-row items-center justify-between bg-gray-200 p-4 h-10 w-[500px] rounded-md'>
-                <Link href={`/notebooks/${notebook.id}`} className='text-blue-600'>{notebook.title}</Link>
-                <div className='edit-delete ml-auto'>
+            <li key={notebook.id} className='w-4/5 md:w-3/5 h-12 flex flex-row items-center justify-between'>
+                <div className='r'>
+                  <Link href={`/notebooks/${notebook.id}`} className='text-white'>{notebook.title}</Link>
+                </div>
+                <div className='flex flex-row justify-between items-center pr-4 gap-4'>
                   <EditButton notebookId={notebook.id} />
                   <DeleteIcon
                     notebookId={notebook.id} 
@@ -37,7 +38,6 @@ export default function NotebooksList({ notebooks: initialNotebooks }: Notebooks
                     }} 
                   />
                 </div>
-              </div>
             </li>
           ))}
         </ul>
