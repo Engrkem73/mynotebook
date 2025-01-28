@@ -31,6 +31,10 @@ body {
   flex-direction: column;
 }
 
+main{
+  height: 100vh;
+}
+
 /* .header {
   background: linear-gradient(to right, #2d3748, #4a5568);
   @apply flex items-center justify-center p-4 w-full h-[100px] sticky top-0 z-50;

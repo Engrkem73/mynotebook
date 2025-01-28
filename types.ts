@@ -1,6 +1,6 @@
 export interface PageProps {
     params: Promise<{
-        id: string;
+        notebookId: string;
     }>;
 }
 
