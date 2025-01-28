@@ -11,7 +11,7 @@ function EditButton({ notebookId }: EditButtonProps) {
 
   return (
     <Link href={`/notebooks/${notebookId}/edit`} className="relative" >
-      <button aria-label='Edit Button' onMouseEnter={onHover} onMouseLeave={onLeave}>
+      <button aria-label='Edit Button' onMouseEnter={onHover} onMouseLeave={onLeave} className="p-2">
          <PencilOff size={14} />
       </button>
       {hover ? <div className='bg-gray-600 text-xs absolute bottom-7 right-1 p-2 rounded-md'>Edit</div>: null }

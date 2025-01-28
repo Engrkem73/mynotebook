@@ -19,20 +19,20 @@ export default async function Home() {
     });
 
     return (
-        <main>
+        <main className="bg-gradient-to-b from-black to-[#363535] overflow-auto">
             <Head>
                 <link rel="icon" href="/favicon.ico" type="image/jpeg" />
             </Head>
-            <div className='justify-start'>
-                <div className='flex flex-row items-center h-16'>
+            <div className='p-4 h-full flex flex-col'>
+                <div className='flex flex-row items-center h-1/10'>
                     <h1 className='text-2xl font-bold flex-1 md:text-center text-left'>Welcome, {session.user.name}</h1>
                     <div className='flex-none pr-5'>
                       <SignOut />
                     </div>
                 </div>
-                <div className='flex flex-col justify-start items-center gap-4 h-screen pt-10'>
+                <div className='flex flex-col justify-start items-center gap-4 h-9/10 pt-10'>
                     <div className=''>
-                        <h1 className=''>My Notebooks:</h1>
+                        <h1 className='text-xl font-semibold'>My Notebooks:</h1>
                     </div>
                     <CreateNewNotebook/>
                     <NotebooksList notebooks={notebooks} />

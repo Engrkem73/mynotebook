@@ -70,17 +70,3 @@ export async function DELETE(
 
   return new NextResponse(null, { status: 204 });
 }
-
-export async function OPTIONS(
-  request: NextRequest,
-  context: ApiRouteContext
-): Promise<NextResponse> {
-  return NextResponse.json(null, { status: 405 });
-}
-
-export async function PATCH(
-  request: NextRequest,
-  context: ApiRouteContext
-): Promise<NextResponse> {
-  return NextResponse.json(null, { status: 405 });
-}

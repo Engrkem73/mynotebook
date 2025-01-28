@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState, FormEvent } from 'react';
+import { useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation'; // Correct to use in Next.js 13 app dir
 import { Notebook } from '@prisma/client';
-import Link from 'next/link';
 import Cancel from '@/app/components/cancel';
 
 type EditNotebookFormProps = {
@@ -14,6 +13,7 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     async function fetchNotebook() {
@@ -27,8 +27,9 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
     fetchNotebook();
   }, [id]);
 
-  async function handleSubmit(event: any) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setIsSaving(true);
 
     const response = await fetch(`/api/notebooks/${id}`, {
       method: 'PUT',
@@ -37,6 +38,7 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
       },
       body: JSON.stringify({ title, content }),
     });
+    setIsSaving(false);
 
     if (response.ok) {
       router.push('/'); // Redirect to homepage or notebook list
@@ -46,39 +48,32 @@ export default function EditNotebookForm({ id }: EditNotebookFormProps) {
   }
 
   return (
-    <div className="create-notebook">
-      <form className="notebook-form">
-        <label className="label">
-          <span className="text-2xl font-bold w-[100px]">Title:</span>
+    <main className="flex flex-col items-center justify-center min-h-screen">
+      <form onSubmit={handleSubmit} className="p-6 rounded-lg shadow-md h-screen w-4/5 flex flex-col">
+        <label className="block mb-4 h-[50px]">
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="title-input"
+            className="bg-gray-600 m-2 p-2 text-white block h-full w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </label>
-        <div className="button-container">
-          <div className="right-padding"></div>
-          <div className="left-padding">
-            <div className="button-container">
-              <Cancel />
-              <button type="button" onClick={handleSubmit} className="create-button">
-                Update
-              </button>
-            </div>
-          </div>
+        <div className="flex justify-end gap-4 items-center h-1/10">
+          <Cancel />
+          <button type="submit" className="bg-blue-500 w-[100px] text-center text-white px-4 py-2 rounded-md mb-4" disabled={isSaving}>
+          {isSaving ? "Saving..." : "Save"}
+          </button>
         </div>
-        <label className="label">
-          <span className="text-2xl font-bold w-[100px] self-start">Content:</span>
+        <label className="block flex-1">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
-            className="content-input"
+            className="bg-gray-600 m-2 p-2 text-white block w-full h-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </label>
       </form>
-    </div>
+    </main>
   );
 }
