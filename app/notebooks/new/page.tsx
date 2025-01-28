@@ -30,7 +30,7 @@ export default function NewNotebook() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
-      <form onSubmit={handleSubmit} className="p-6 rounded-lg shadow-md h-screen w-4/5 flex flex-col">
+      <form onSubmit={handleSubmit} className="p-6 rounded-lg shadow-md h-screen w-screen sm:w-4/5 flex flex-col">
         <label className="block mb-4 h-[50px]">
           <input
             type="text"

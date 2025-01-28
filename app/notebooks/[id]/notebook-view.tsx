@@ -31,7 +31,7 @@ export default function NotebookView({ params }: PageProps) {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
-        <div className="p-6 rounded-lg shadow-md h-screen w-4/5 flex flex-col">
+        <div className="flex flex-col p-6 rounded-lg shadow-md h-screen w-screen lg:w-4/5 ">
           <div className="block mb-4 h-[50px]">
             <div className="bg-gray-600 m-2 p-2 text-white block h-full w-full rounded-md border-gray-300 shadow-sm">{notebook.title}</div>
           </div>
