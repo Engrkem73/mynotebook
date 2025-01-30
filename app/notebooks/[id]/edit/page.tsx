@@ -4,9 +4,9 @@ import { PageProps } from '../../../../types';
 
 
 export default async function EditNotebookPage({ params }: PageProps) {
-  const { notebookId } = await params;
+  const { id } = await params;
 
   return (
-      <EditNotebookForm id={notebookId} />
+      <EditNotebookForm id={id} />
   );
 }

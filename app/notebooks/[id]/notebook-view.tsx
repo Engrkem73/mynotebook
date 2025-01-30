@@ -11,7 +11,7 @@ export default function NotebookView({ params }: PageProps) {
   useEffect(() => {
     async function fetchNotebook() {
       const resolvedParams = await params;
-      const response = await fetch(`/api/notebooks/${resolvedParams.notebookId}`);
+      const response = await fetch(`/api/notebooks/${resolvedParams.id}`);
       if (response.ok) {
         const data = await response.json();
         setNotebook(data);
